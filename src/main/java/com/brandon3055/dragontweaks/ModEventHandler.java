@@ -7,6 +7,8 @@ import net.minecraft.world.gen.feature.WorldGenEndPodium;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+
+
 /**
  * Created by brandon3055 on 11/11/2016.
  */
@@ -14,11 +16,11 @@ public class ModEventHandler {
 
     @SubscribeEvent
     public void onDropEvent(LivingDropsEvent event) {
-        if (!event.getEntity().worldObj.isRemote && (event.getEntity() instanceof EntityDragon)) {
+        if (!event.getEntity().world.isRemote && (event.getEntity() instanceof EntityDragon)) {
 
             DragonFightManager manager = ((EntityDragon) event.getEntity()).getFightManager();
             if (manager != null && manager.hasPreviouslyKilledDragon()) {
-                event.getEntity().worldObj.setBlockState(event.getEntity().worldObj.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION).add(0, 0, -4), Blocks.DRAGON_EGG.getDefaultState());
+                event.getEntity().world.setBlockState(event.getEntity().world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION).add(0, 0, -4), Blocks.DRAGON_EGG.getDefaultState());
             }
         }
     }
